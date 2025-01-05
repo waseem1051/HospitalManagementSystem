@@ -1,0 +1,11 @@
+*{
+    background-color: #8D77AB;
+    color: antiquewhite;
+ 
+}
+nav.navbar {
+    margin: 0; /* Removes any outer margin */
+    padding: 0; /* Removes any inner padding */
+    background-color: #8D77AB;
+    border: none; /* Removes any borders */
+}
