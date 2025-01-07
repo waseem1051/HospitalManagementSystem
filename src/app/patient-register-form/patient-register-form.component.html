@@ -1,0 +1,130 @@
+<div class="container">
+  <div class="container-sm">
+    <h1>Patient Registration</h1>
+    <form
+      (ngSubmit)="onSubmit(registrationForm.value)"
+      #registrationForm="ngForm"
+    >
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="Patientname">Patient Name</label><br />
+          <input
+            type="text"
+            name="Patientname"
+            placeholder="Patient Name"
+            required
+            class="form-control"
+            [(ngModel)]="Patient.Pname"
+          />
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="gender">Gender</label>
+          <select
+            id="gender"
+            class="form-control"
+            name="gender"
+            required
+            [(ngModel)]="Patient.gender"
+          >
+            <option value="">Select</option>
+            <option value="Male" selected>Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="DOB">Date of Birth</label><br />
+          <input
+            type="date"
+            name="DOB"
+            class="form-control"
+            #DOB="ngModel"
+            [(ngModel)]="Patient.DOB"
+          />
+        </div>
+
+        <div *ngIf="DOB.invalid && DOB.touched" style="color: red">
+          <small *ngIf="DOB.errors?.['required']">DOB is required.</small>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="contact">Contact</label><br />
+          <input
+            type="text"
+            name="contact"
+            class="form-control"
+            [(ngModel)]="Patient.contact"
+            #contact="ngModel"
+            required
+            pattern="^[6-9]\d{9}$"
+          />
+        </div>
+
+        <div *ngIf="contact.invalid && contact.touched" style="color: red">
+          <small *ngIf="contact.errors?.['required']"
+            >Mobile number is required.</small
+          >
+          <small *ngIf="contact.errors?.['pattern']"
+            >Contact must be in start 6,7,8,9 format.</small
+          >
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="Aadhar">Aadhar Card No</label><br />
+          <input
+            type="text"
+            id="Aadhar"
+            name="Aadhar"
+            placeholder="0000-0000-0000"
+            class="form-control"
+            [(ngModel)]="Patient.Diagnosis"
+            #aadhar="ngModel"
+            required
+            pattern="^\d{4}\s\d{4}\s\d{4}$"
+          />
+          <div *ngIf="aadhar.invalid && aadhar.touched" style="color: red">
+            <small *ngIf="aadhar.errors?.['required']"
+              >Aadhar is required.</small
+            >
+            <small *ngIf="aadhar.errors?.['pattern']"
+              >Aadhar must be in 0000 0000 0000 format.</small
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="availabilitydates">Availability Dates</label><br />
+          <input
+            type="date"
+            name="availabilitydates"
+            class="form-control"
+            [(ngModel)]="Patient.CreatedOn"
+          />
+        </div>
+      </div>
+
+      <br />
+      <div class="col-md-12">
+        <button
+          type="submit"
+          class="btn btn-primary addbtn"
+          [disabled]="registrationForm.invalid"
+        >
+          Add Patient
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
